@@ -1,0 +1,13 @@
+import axios from 'axios';
+
+const BOOKMARK_API = 'http://localhost:5000/api';
+export const getBookmarks = async () => {
+  try {
+    const bookmarks = await axios.get(`${BOOKMARK_API}/bookmark`);
+    console.log(bookmarks);
+    return bookmarks;
+
+  } catch(e) {
+    return e;
+  }
+}

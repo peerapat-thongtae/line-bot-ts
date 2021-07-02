@@ -1,8 +1,7 @@
 // Import all dependencies, mostly using destructuring for better view.
 import { ClientConfig, Client, middleware, MiddlewareConfig, WebhookEvent, TextMessage, MessageAPIResponseBase } from '@line/bot-sdk';
 import express, { Application, Request, Response } from 'express';
-import * as dotenv from 'dotenv';
-
+import * as BookmarkService from './src/services/bookmarkService';
 // Setup all LINE client and Express configurations.
 const clientConfig: ClientConfig = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN || '',
@@ -36,9 +35,12 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
 
   // Create a new message.
   if(text === ':command') {
+    const bookmarks = await BookmarkService.getBookmarks();
+
+    console.log(bookmarks);
     const response: TextMessage = {
       type: 'text',
-      text : ":test \r\n :test2",
+      text : bookmarks.count,
     };
   
     // Reply to the user.
