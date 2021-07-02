@@ -40,7 +40,7 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
     console.log(bookmarks.count);
     const response: TextMessage = {
       type: 'text',
-      text : "test",
+      text : bookmarks.count,
     };
   
     // Reply to the user.
