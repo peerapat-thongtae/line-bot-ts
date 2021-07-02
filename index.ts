@@ -26,25 +26,24 @@ const client = new Client(clientConfig);
 const app: Application = express();
 
 // Function handler to receive the text.
-const textEventHandler = async (event:any) => {
+const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponseBase | undefined> => {
   // Process all variables here.
-  console.log(event.message);
-  // if (event.type !== 'message' || event.message.type !== 'text') {
-  //   return;
-  // }
+  if (event.type !== 'message' || event.message.type !== 'text') {
+    return;
+  }
 
-  // // Process all message related variables here.
-  // const { replyToken } = event;
-  // const { text } = event.message;
+  // Process all message related variables here.
+  const { replyToken } = event;
+  const { text } = event.message;
 
-  // // Create a new message.
-  // const response: TextMessage = {
-  //   type: 'text',
-  //   text,
-  // };
+  // Create a new message.
+  const response: TextMessage = {
+    type: 'text',
+    text,
+  };
 
-  // // Reply to the user.
-  // await client.replyMessage(replyToken, response);
+  // Reply to the user.
+  await client.replyMessage(replyToken, response);
 };
 
 // Register the LINE middleware.
