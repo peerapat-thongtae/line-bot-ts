@@ -5,7 +5,7 @@ export const getBookmarks = async () => {
   try {
     const bookmarks = await axios.get(`${BOOKMARK_API}/bookmark`);
     console.log(bookmarks);
-    return bookmarks;
+    return bookmarks.data;
 
   } catch(e) {
     return e;
