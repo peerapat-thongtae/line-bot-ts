@@ -37,11 +37,10 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
   // Create a new message.
   const response: TextMessage = {
     type: 'text',
-    text,
+    text : "what",
   };
 
   // Reply to the user.
-  await client.replyMessage(replyToken, response);
   await client.replyMessage(replyToken, response);
 };
 
