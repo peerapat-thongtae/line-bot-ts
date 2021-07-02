@@ -36,11 +36,13 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
   // Create a new message.
   if(text === ':command') {
     const bookmarks = await BookmarkService.getBookmarks();
-
-    console.log(bookmarks.count);
+    let text = '';
+    for(let i = 0; i<bookmarks.bookmarks.length ; i++) {
+      text += `${bookmarks.bookmarks[i].title}\r\n`;
+    }
     const response: TextMessage = {
       type: 'text',
-      text : bookmarks.count,
+      text : text,
     };
   
     // Reply to the user.
