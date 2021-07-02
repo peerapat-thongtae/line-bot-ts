@@ -3,9 +3,6 @@ import { ClientConfig, Client, middleware, MiddlewareConfig, WebhookEvent, TextM
 import express, { Application, Request, Response } from 'express';
 import * as dotenv from 'dotenv';
 
-dotenv.config();
-
-console.log(process.env);
 // Setup all LINE client and Express configurations.
 const clientConfig: ClientConfig = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN || '',
@@ -28,6 +25,7 @@ const app: Application = express();
 // Function handler to receive the text.
 const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponseBase | undefined> => {
   // Process all variables here.
+  console.log(event);
   if (event.type !== 'message' || event.message.type !== 'text') {
     return;
   }
