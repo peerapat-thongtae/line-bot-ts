@@ -42,6 +42,7 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
 
   // Reply to the user.
   await client.replyMessage(replyToken, response);
+  await client.replyMessage(replyToken, response);
 };
 
 // Register the LINE middleware.
