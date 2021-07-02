@@ -35,13 +35,18 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
   const { text } = event.message;
 
   // Create a new message.
-  const response: TextMessage = {
-    type: 'text',
-    text : "what",
-  };
+  if(text === ':command') {
+    const response: TextMessage = {
+      type: 'text',
+      text : ":test \r\n :test2",
+    };
+  
+    // Reply to the user.
+    await client.replyMessage(replyToken, response);
+  }
 
-  // Reply to the user.
-  await client.replyMessage(replyToken, response);
+  return;
+  
 };
 
 // Register the LINE middleware.
