@@ -2,6 +2,7 @@ import { ClientConfig, Client, middleware, MiddlewareConfig, WebhookEvent, TextM
 import express, { Application, Request, Response } from 'express';
 import * as BookmarkService from '../../src/services/bookmarkService';
 import * as MovieService from '../../src/services//TMDB/movieService';
+import * as TVService from '../../src/services//TMDB/tvService';
 import { cardMedia } from '../../src/utils/messageHelper';
 import { getMoviePopular, sendMedia } from '../utils/handleTextHelper';
 
@@ -23,6 +24,9 @@ export const textEventHandler = async (event: WebhookEvent , client:Client): Pro
     case "trending movie day" :
       const trending = await MovieService.trendingMovieDay();
       await sendMedia(replyToken , client , trending);
+    case "trending tv day" :
+      const trendingTV = await TVService.trendingTVDay();
+      await sendMedia(replyToken , client , trendingTV);
 
     default:
       // code block
