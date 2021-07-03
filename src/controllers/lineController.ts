@@ -22,7 +22,7 @@ export const textEventHandler = async (event: WebhookEvent , client:Client): Pro
     let replyArr = [];
     let te = '';
     for(let i = 0; i<movies.results.length; i++) {
-        if(i < 5) {
+        if(i < 3) {
           const responseFlex: FlexMessage = cardMedia(movies.results[i]);
           replyArr.push(responseFlex);
         } else {
