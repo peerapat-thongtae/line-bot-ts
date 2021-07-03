@@ -3,6 +3,7 @@ import express, { Application, Request, Response } from 'express';
 import * as BookmarkService from '../../src/services/bookmarkService';
 import * as MovieService from '../../src/services//TMDB/movieService';
 import { cardMedia } from '../../src/utils/messageHelper';
+import { getMoviePopular } from '../utils/handleTextHelper';
 
 export const textEventHandler = async (event: WebhookEvent , client:Client): Promise<MessageAPIResponseBase | undefined> => {
   // Process all variables here.
@@ -15,30 +16,16 @@ export const textEventHandler = async (event: WebhookEvent , client:Client): Pro
   const { replyToken } = event;
   const { text } = event.message;
   
-
-  if(text === 'movie popular') {
-    const movies = await MovieService.discoverMovie();
-    console.log(movies.results.length);
-    let replyArr = [];
-    let te = '';
-    for(let i = 0; i<movies.results.length; i++) {
-        if(i < 3) {
-          const responseFlex: FlexMessage = cardMedia(movies.results[i]);
-          replyArr.push(responseFlex);
-        } else {
-          te += `${movies.results[i].title}\r\n`;
-        }
-        
-      
-    }
-    const response:TextMessage = {
-      type : "text",
-      text : te
-    }
-    replyArr.push(response);
-    console.log(te);
-    await client.replyMessage(replyToken, replyArr);
+  switch(text) {
+    case "movie popular":
+      await getMoviePopular(replyToken , client);
+      break;
+    default:
+      // code block
   }
+  // if(text === 'movie popular') {
+    
+  // }
 
 
   return;

@@ -37,10 +37,6 @@ const app: Application = express();
 app.get(
   '/',
   async (_: Request, res: Response): Promise<Response> => {
-    await client.pushMessage('U98f9b35599f7f28ca16ede04f5ce3fba' , {
-      type : "text",
-      text : "test push",
-    });
     return res.status(200).json({
       status: 'success',
       message: 'Connected successfully!',
