@@ -15,10 +15,10 @@ export const textEventHandler = async (event: WebhookEvent , client:Client): Pro
   // Process all message related variables here.
   const { replyToken } = event;
   const { text } = event.message;
-
+  console.log(text);
   switch (text) {
     case "movie popular":
-        await getMoviePopular(replyToken , client);
+        console.log('yes');
         break;
     default:  
         // statements
