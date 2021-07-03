@@ -1,8 +1,8 @@
-import { Client, FlexMessage, TextMessage, WebhookEvent } from '@line/bot-sdk';
+import { Client, FlexCarousel, FlexMessage, Message, TextMessage, WebhookEvent } from '@line/bot-sdk';
 import express, { Application, Request, Response } from 'express';
 import * as BookmarkService from '../../src/services/bookmarkService';
 import * as MovieService from '../../src/services//TMDB/movieService';
-import { cardMedia } from '../../src/utils/messageHelper';
+import { cardCarousel, cardMedia } from '../../src/utils/messageHelper';
 
 export const getMoviePopular = async (replyToken:string , client:Client) => {
   const movies = await MovieService.discoverMovie();
@@ -31,21 +31,23 @@ export const getMoviePopular = async (replyToken:string , client:Client) => {
 export const sendMedia = async (replyToken:string , client:Client , datas:any) => {
   let replyArr = [];
     let te = '';
-    for(let i = 0; i<datas.results.length; i++) {
-        if(i < 3) {
-          const responseFlex: FlexMessage = cardMedia(datas.results[i]);
-          replyArr.push(responseFlex);
-        } else {
-          te += `${datas.results[i].title}\r\n`;
-        }
+    // for(let i = 0; i<datas.results.length; i++) {
+    //     if(i < 3) {
+    //       const responseFlex: FlexCarousel = cardCarousel();
+    //       replyArr.push(responseFlex);
+    //     } else {
+    //       te += `${datas.results[i].title}\r\n`;
+    //     }
         
       
-    }
+    // }
+    const responseCarousel:FlexMessage = await cardCarousel(datas.results);
+    await client.replyMessage(replyToken , responseCarousel);
     const response:TextMessage = {
       type : "text",
       text : te
     }
     replyArr.push(response);
     console.log(te);
-    await client.replyMessage(replyToken, replyArr);
+    // await client.replyMessage(replyToken, replyArr);
 }
