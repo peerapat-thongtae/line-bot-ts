@@ -1,6 +1,7 @@
 import { FlexMessage } from "@line/bot-sdk";
 import { MovieInterface } from "../models/movieModel";
 
+
 export const cardMedia = (movie:MovieInterface) => {
   const flex:FlexMessage = {
     type: "flex",
@@ -11,7 +12,7 @@ export const cardMedia = (movie:MovieInterface) => {
       direction : "ltr",
       hero : {
         "type": "image",
-        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+        "url": `${process.env.TMDB_IMAGE_PATH}/${movie.backdrop_path}`,
         "size": "full",
         "aspectRatio": "20:13",
         "aspectMode": "cover",
