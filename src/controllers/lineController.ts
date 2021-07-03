@@ -21,6 +21,7 @@ export const textEventHandler = async (event: WebhookEvent , client:Client): Pro
     console.log(movies);
     let replyArr = [];
     for(let i = 0; i<movies.results.length; i++) {
+      console.log(i);
       if(i < 6) {
         const response: FlexMessage = cardMedia(movies.results[i]);
         replyArr.push(response);
