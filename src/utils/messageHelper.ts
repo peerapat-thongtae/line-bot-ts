@@ -129,20 +129,11 @@ export const cardMedia = (movie:MovieInterface) => {
             "height": "sm",
             "action": {
               "type": "uri",
-              "label": "aaa",
-              "uri": "https://linecorp.com"
+              "label": "Detail",
+              "uri": `${process.env.TMDB_URL}/movie/${movie.id}`
             }
           },
-          {
-            "type": "button",
-            "style": "link",
-            "height": "sm",
-            "action": {
-              "type": "uri",
-              "label": "WEBSITE",
-              "uri": "https://linecorp.com"
-            }
-          },
+          
           {
             "type": "spacer",
             "size": "sm"
