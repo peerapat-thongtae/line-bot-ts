@@ -23,24 +23,9 @@ export const cardMedia = (movie:MovieInterface) => {
         "contents": [
           {
             "type": "text",
-            "text": movie.title,
+            "text": `${movie.title} (${movie.vote_average})`,
             "weight": "bold",
             "size": "xl"
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "margin": "md",
-            "contents": [
-              {
-                "type": "text",
-                "text": movie.vote_average.toString(),
-                "size": "sm",
-                "color": "#999999",
-                "margin": "md",
-                "flex": 0
-              }
-            ]
           },
           {
             "type": "box",
