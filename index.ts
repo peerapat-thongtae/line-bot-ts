@@ -3,6 +3,7 @@ import { ClientConfig, Client, middleware, MiddlewareConfig, WebhookEvent, TextM
 import express, { Application, Request, Response } from 'express';
 import * as BookmarkService from './src/services/bookmarkService';
 import * as MovieService from './src/services//TMDB/movieService';
+import { cardMedia } from './src/utils/messageHelper';
 
 // Setup all LINE client and Express configurations.
 const clientConfig: ClientConfig = {
@@ -42,15 +43,11 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
     console.log(movies);
     let text = '';
     for(let i = 0; i<5 ; i++) {
-      text += `${movies.results[i].title}\r\n`;
+      // text += `${movies.results[i].title}\r\n`;
+      const response: FlexMessage = cardMedia(movies.results[i]);
+      await client.replyMessage(replyToken, response);
     }
-    const response: TextMessage = {
-      type: 'text',
-      text : text,
-    };
-  
-    // Reply to the user.
-    await client.replyMessage(replyToken, response);
+    return;
   }
 
   if(text === 'bubble') {
