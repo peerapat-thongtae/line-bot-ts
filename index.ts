@@ -59,7 +59,7 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
       altText: 'ssss',
       contents : {
         type: "bubble",
-        size: "nano",
+        size: "giga",
         direction : "ltr",
         hero : {
           "type": "image",
