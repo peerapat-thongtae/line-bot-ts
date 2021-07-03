@@ -18,7 +18,7 @@ export const textEventHandler = async (event: WebhookEvent , client:Client): Pro
   console.log(text);
   switch (text) {
     case "movie popular":
-        console.log('yes');
+        await getMoviePopular(replyToken , client);
         break;
     default:  
         // statements
