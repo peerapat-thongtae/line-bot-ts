@@ -20,17 +20,22 @@ export const textEventHandler = async (event: WebhookEvent , client:Client): Pro
     const movies = await MovieService.discoverMovie();
     console.log(movies.results.length);
     let replyArr = [];
+    let te = '';
     for(let i = 0; i<movies.results.length; i++) {
         // const response: FlexMessage = cardMedia(movies.results[i]);
-        const response:TextMessage = {
-          type : "text",
-          text : movies.results[i].title
-        }
-        replyArr.push(response);
+        // const response:TextMessage = {
+        //   type : "text",
+        //   text : movies.results[i].title
+        // }
+        te += `${movies.results[i].title}\r\n`;
       
     }
-    console.log(replyArr);
-    await client.replyMessage(replyToken, replyArr);
+    const response:TextMessage = {
+      type : "text",
+      text : te
+    }
+    console.log(te);
+    await client.replyMessage(replyToken, response);
   }
 
 
