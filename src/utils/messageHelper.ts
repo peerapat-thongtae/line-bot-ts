@@ -118,7 +118,38 @@ export const cardMedia = (movie:MovieInterface) => {
           }
         ]
       },
-      // footer?: FlexBox;
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "button",
+            "style": "link",
+            "height": "sm",
+            "action": {
+              "type": "uri",
+              "label": "aaa",
+              "uri": "https://linecorp.com"
+            }
+          },
+          {
+            "type": "button",
+            "style": "link",
+            "height": "sm",
+            "action": {
+              "type": "uri",
+              "label": "WEBSITE",
+              "uri": "https://linecorp.com"
+            }
+          },
+          {
+            "type": "spacer",
+            "size": "sm"
+          }
+        ],
+        "flex": 0
+      }
       // styles?: FlexBubbleStyle;
       // action?: Action;
     }
