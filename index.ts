@@ -2,6 +2,8 @@
 import { ClientConfig, Client, middleware, MiddlewareConfig, WebhookEvent, TextMessage, MessageAPIResponseBase } from '@line/bot-sdk';
 import express, { Application, Request, Response } from 'express';
 import * as BookmarkService from './src/services/bookmarkService';
+import * as MovieService from './src/services//TMDB/movieService';
+
 // Setup all LINE client and Express configurations.
 const clientConfig: ClientConfig = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN || '',
@@ -35,10 +37,11 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
 
   // Create a new message.
   if(text === ':command') {
-    const bookmarks = await BookmarkService.getBookmarks();
+    // const bookmarks = await BookmarkService.getBookmarks();
+    const movies = await MovieService.discoverMovie();
     let text = '';
-    for(let i = 0; i<bookmarks.bookmarks.length ; i++) {
-      text += `${bookmarks.bookmarks[i].title}\r\n`;
+    for(let i = 0; i<5 ; i++) {
+      text += `${movies.results[i].title}\r\n`;
     }
     const response: TextMessage = {
       type: 'text',
