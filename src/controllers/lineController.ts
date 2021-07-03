@@ -18,9 +18,9 @@ export const textEventHandler = async (event: WebhookEvent , client:Client): Pro
 
   if(text === 'movie popular') {
     const movies = await MovieService.discoverMovie();
-    console.log(movies);
+    console.log(movies.results);
     let replyArr = [];
-    for(let i = 0; i<movies.results.length; i++) {
+    for(let i = 0; i<5; i++) {
         const response: FlexMessage = cardMedia(movies.results[i]);
         replyArr.push(response);
       
