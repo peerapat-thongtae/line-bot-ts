@@ -22,20 +22,22 @@ export const textEventHandler = async (event: WebhookEvent , client:Client): Pro
     let replyArr = [];
     let te = '';
     for(let i = 0; i<movies.results.length; i++) {
-        // const response: FlexMessage = cardMedia(movies.results[i]);
-        // const response:TextMessage = {
-        //   type : "text",
-        //   text : movies.results[i].title
-        // }
-        te += `${movies.results[i].title}\r\n`;
+        if(i < 5) {
+          const responseFlex: FlexMessage = cardMedia(movies.results[i]);
+          replyArr.push(responseFlex);
+        } else {
+          te += `${movies.results[i].title}\r\n`;
+        }
+        
       
     }
     const response:TextMessage = {
       type : "text",
       text : te
     }
+    replyArr.push(response);
     console.log(te);
-    await client.replyMessage(replyToken, response);
+    await client.replyMessage(replyToken, replyArr);
   }
 
 
