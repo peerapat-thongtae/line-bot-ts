@@ -126,8 +126,6 @@ export const cardMedia = (movie:MovieInterface) => {
         ],
         "flex": 0
       }
-      // styles?: FlexBubbleStyle;
-      // action?: Action;
     }
   }
   return flex;
