@@ -29,7 +29,7 @@ export const textEventHandler = async (event: WebhookEvent , client:Client): Pro
           type : "text",
           text : movies.results[i].title
         }
-        replyArr.push(text);
+        // replyArr.push(text);
       }
       
     }
