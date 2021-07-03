@@ -17,7 +17,7 @@ export const getMoviePopular = async (replyToken:string , client:Client) => {
           type : "text",
           text : movies.results[i].title
         }
-        replyArr.push(text);
+        // replyArr.push(text);
       }
     }
     await client.replyMessage(replyToken, replyArr);
