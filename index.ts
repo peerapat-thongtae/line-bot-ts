@@ -41,13 +41,14 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
     // const bookmarks = await BookmarkService.getBookmarks();
     const movies = await MovieService.discoverMovie();
     console.log(movies);
-    let text = '';
+    let text = [];
     for(let i = 0; i<5 ; i++) {
       // text += `${movies.results[i].title}\r\n`;
       const response: FlexMessage = cardMedia(movies.results[i]);
-      await client.replyMessage(replyToken, response);
+      text.push(response);
+      
     }
-    return;
+    await client.replyMessage(replyToken, text);
   }
 
   if(text === 'bubble') {
