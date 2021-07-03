@@ -10,3 +10,23 @@ export const discoverMovie = async () => {
     });
     return movies.data;
 }
+
+export const searchMovie = async (query:string) => {
+  const movie = await axios.get(`${TMDB_API_URL}/3/search/movie?query=${query}` , {
+    headers: {
+      Authorization: 'Bearer ' + TMDB_ACCESS_TOKEN
+    }
+  });
+
+  return movie.data;
+}
+
+export const trendingMovieDay = async () => {
+  const movies = await axios.get(`${TMDB_API_URL}/3/trending/movie/day`,{
+    headers : {
+      Authorization: 'Bearer ' + TMDB_ACCESS_TOKEN
+    }
+  });
+
+  return movies.data;
+}

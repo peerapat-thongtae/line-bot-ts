@@ -27,3 +27,25 @@ export const getMoviePopular = async (replyToken:string , client:Client) => {
     console.log(te);
     await client.replyMessage(replyToken, replyArr);
 }
+
+export const sendMedia = async (replyToken:string , client:Client , datas:any) => {
+  let replyArr = [];
+    let te = '';
+    for(let i = 0; i<datas.results.length; i++) {
+        if(i < 3) {
+          const responseFlex: FlexMessage = cardMedia(datas.results[i]);
+          replyArr.push(responseFlex);
+        } else {
+          te += `${datas.results[i].title}\r\n`;
+        }
+        
+      
+    }
+    const response:TextMessage = {
+      type : "text",
+      text : te
+    }
+    replyArr.push(response);
+    console.log(te);
+    await client.replyMessage(replyToken, replyArr);
+}
