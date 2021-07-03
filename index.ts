@@ -39,6 +39,7 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
   if(text === ':command') {
     // const bookmarks = await BookmarkService.getBookmarks();
     const movies = await MovieService.discoverMovie();
+    console.log(movies);
     let text = '';
     for(let i = 0; i<5 ; i++) {
       text += `${movies.results[i].title}\r\n`;
