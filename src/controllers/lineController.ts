@@ -24,15 +24,10 @@ export const textEventHandler = async (event: WebhookEvent , client:Client): Pro
       if(i < 6) {
         const response: FlexMessage = cardMedia(movies.results[i]);
         replyArr.push(response);
-      } else {
-        const text: TextMessage = {
-          type : "text",
-          text : movies.results[i].title
-        }
-        // replyArr.push(text);
       }
       
     }
+    console.log(replyArr);
     await client.replyMessage(replyToken, replyArr);
   }
 
