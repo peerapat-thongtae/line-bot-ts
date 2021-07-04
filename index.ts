@@ -19,7 +19,7 @@ const client = new Client(clientConfig);
 
 const app: Application = express();
 
-cron.schedule('* * * * *', () => {
+cron.schedule('01 15 * * *', () => {
   const date_ob = new Date();
   let hours = date_ob.getHours();
 
