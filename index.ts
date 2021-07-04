@@ -22,7 +22,7 @@ const client = new Client(clientConfig);
 
 const app: Application = express();
 
-cron.schedule('* * * * *', async () => {
+cron.schedule('0 19 * * *', async () => {
   const trendingMovie = await trendingMovieDay();
   const carouselMovie:FlexMessage = await cardCarousel(trendingMovie.results);
   await client.pushMessage(`${process.env.LINE_MY_USER_ID}` , carouselMovie);
