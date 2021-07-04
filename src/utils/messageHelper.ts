@@ -154,7 +154,7 @@ export const cardCarousel = async (datas:any) => {
         "contents": [
           {
             "type": "text",
-            "text": `${datas[i].title}`,
+            "text": `${datas[i].title || datas[i].name}`,
             "weight": "bold",
             "size": "xl"
           },
@@ -178,7 +178,7 @@ export const cardCarousel = async (datas:any) => {
                   },
                   {
                     "type": "text",
-                    "text": datas[i].title,
+                    "text": datas[i].title || datas[i].name,
                     "wrap": true,
                     "color": "#666666",
                     "size": "sm",
@@ -200,7 +200,7 @@ export const cardCarousel = async (datas:any) => {
                   },
                   {
                     "type": "text",
-                    "text": datas[i].release_date,
+                    "text": datas[i].release_date || datas[i].first_air_date,
                     "wrap": true,
                     "color": "#666666",
                     "size": "sm",
