@@ -2,6 +2,8 @@ import { ClientConfig, Client, middleware, MiddlewareConfig, WebhookEvent, TextM
 import express, { Application, Request, Response } from 'express';
 import { textEventHandler } from './src/controllers/lineController';
 import * as cron from 'node-cron';
+import { trendingMovieDay } from './src/services/TMDB/movieService';
+import { cardCarousel } from './src/utils/messageHelper';
 
 const clientConfig: ClientConfig = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN || '',
@@ -19,11 +21,10 @@ const client = new Client(clientConfig);
 
 const app: Application = express();
 
-cron.schedule('10 15 * * *', async () => {
-  await client.pushMessage(`${process.env.LINE_MY_USER_ID}` , {
-    type : "text",
-    text : "ssss"
-  });
+cron.schedule('16 15 * * *', async () => {
+  const trendingMovie = await trendingMovieDay();
+  const responseCarousel:FlexMessage = await cardCarousel(trendingMovie.results);
+  await client.pushMessage(`${process.env.LINE_MY_USER_ID}` , responseCarousel);
 });
 
 app.get(
