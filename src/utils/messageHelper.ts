@@ -167,14 +167,14 @@ export const cardCarousel = async (datas:any) => {
               {
                 "type": "box",
                 "layout": "baseline",
-                "spacing": "sm",
+                "spacing": "md",
                 "contents": [
                   {
                     "type": "text",
                     "text": "Title",
                     "color": "#aaaaaa",
-                    "size": "sm",
-                    "flex": 1
+                    "size": "md",
+                    "flex": 2
                   },
                   {
                     "type": "text",
@@ -189,14 +189,14 @@ export const cardCarousel = async (datas:any) => {
               {
                 "type": "box",
                 "layout": "baseline",
-                "spacing": "sm",
+                "spacing": "md",
                 "contents": [
                   {
                     "type": "text",
                     "text": "Release date",
                     "color": "#aaaaaa",
-                    "size": "sm",
-                    "flex": 1
+                    "size": "md",
+                    "flex": 2
                   },
                   {
                     "type": "text",
@@ -211,14 +211,14 @@ export const cardCarousel = async (datas:any) => {
               {
                 "type": "box",
                 "layout": "baseline",
-                "spacing": "sm",
+                "spacing": "md",
                 "contents": [
                   {
                     "type": "text",
                     "text": "Overview",
                     "color": "#aaaaaa",
-                    "size": "sm",
-                    "flex": 1
+                    "size": "md",
+                    "flex": 2
                   },
                   {
                     "type": "text",
