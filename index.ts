@@ -1,12 +1,8 @@
-// Import all dependencies, mostly using destructuring for better view.
 import { ClientConfig, Client, middleware, MiddlewareConfig, WebhookEvent, TextMessage, MessageAPIResponseBase, FlexBubble, FlexMessage } from '@line/bot-sdk';
 import express, { Application, Request, Response } from 'express';
-import * as BookmarkService from './src/services/bookmarkService';
-import * as MovieService from './src/services//TMDB/movieService';
-import { cardMedia } from './src/utils/messageHelper';
 import { textEventHandler } from './src/controllers/lineController';
+import * as cron from 'node-cron';
 
-// Setup all LINE client and Express configurations.
 const clientConfig: ClientConfig = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN || '',
   channelSecret: process.env.CHANNEL_SECRET,
@@ -19,21 +15,14 @@ const middlewareConfig: MiddlewareConfig = {
 
 const PORT = process.env.PORT || 3000;
 
-// Create a new LINE SDK client.
 const client = new Client(clientConfig);
 
-// Create a new Express application.
 const app: Application = express();
 
-// Function handler to receive the text.
+cron.schedule('* * * * *', () => {
+  console.log('Run task every minute');
+});
 
-
-// Register the LINE middleware.
-// As an alternative, you could also pass the middleware in the route handler, which is what is used here.
-// app.use(middleware(middlewareConfig));
-
-// Route handler to receive webhook events.
-// This route is used to receive connection tests.
 app.get(
   '/',
   async (_: Request, res: Response): Promise<Response> => {
