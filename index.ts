@@ -19,7 +19,7 @@ const client = new Client(clientConfig);
 
 const app: Application = express();
 
-cron.schedule('50 14 * * *', () => {
+cron.schedule('52 2 * * *', () => {
   console.log('Run task every minute');
 });
 
