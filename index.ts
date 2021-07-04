@@ -32,8 +32,8 @@ cron.schedule('* * * * *', async () => {
   await client.pushMessage(`${process.env.LINE_MY_USER_ID}` , carouselTV);
 
   var date = new Date();
-  console.log(date.getMinutes );
-  console.log(date.getHours);
+  console.log(date.getMinutes() );
+  console.log(date.getHours());
 });
 
 app.get(
