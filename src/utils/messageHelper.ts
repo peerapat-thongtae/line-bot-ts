@@ -246,7 +246,7 @@ export const cardCarousel = async (datas:any) => {
             "action": {
               "type": "uri",
               "label": "Detail",
-              "uri": `${process.env.TMDB_URL}/movie/${datas[i].id}`
+              "uri": `${process.env.TMDB_URL}/${datas[i].media_type || 'movie'}/${datas[i].id}`
             }
           },
           
