@@ -19,8 +19,13 @@ const client = new Client(clientConfig);
 
 const app: Application = express();
 
-cron.schedule('52 2 * * *', () => {
-  console.log('Run task every minute');
+cron.schedule('* * * * *', () => {
+  const date_ob = new Date();
+  let hours = date_ob.getHours();
+
+  // current minutes
+  let minutes = date_ob.getMinutes();
+  console.log(`${hours} : ${minutes}`);
 });
 
 app.get(
