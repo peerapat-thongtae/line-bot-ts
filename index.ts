@@ -4,6 +4,7 @@ import { textEventHandler } from './src/controllers/lineController';
 import * as cron from 'node-cron';
 import { trendingMovieDay } from './src/services/TMDB/movieService';
 import { cardCarousel } from './src/utils/messageHelper';
+import { trendingTVDay } from './src/services/TMDB/tvService';
 
 const clientConfig: ClientConfig = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN || '',
@@ -21,10 +22,14 @@ const client = new Client(clientConfig);
 
 const app: Application = express();
 
-cron.schedule('20 15 * * *', async () => {
+cron.schedule('24 15 * * *', async () => {
   const trendingMovie = await trendingMovieDay();
   const responseCarousel:FlexMessage = await cardCarousel(trendingMovie.results);
   await client.pushMessage(`${process.env.LINE_MY_USER_ID}` , [responseCarousel , {type : "text" , text : "trending movie"}]);
+
+  const trendingTV = await trendingTVDay();
+  const carouselTV:FlexMessage = await cardCarousel(trendingTV.results);
+  await client.pushMessage(`${process.env.LINE_MY_USER_ID}` , [carouselTV , {type : "text" , text : "trending TV"}]);
 });
 
 app.get(
