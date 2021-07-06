@@ -10,3 +10,13 @@ export const getJobThai = async () => {
   }
   
 }
+
+export const getJobsDB = async () => {
+  try {
+    const data = await axios.get(`${process.env.SCRAPING_URL}/job/jobsdb`);
+    return data.data;
+  } catch(e) {
+    return e;
+  }
+  
+}
