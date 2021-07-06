@@ -37,7 +37,7 @@ export const sendText = async (replyToken : string , client:Client , datas : any
 
   let text = '';
   for (let i = 0 ; i < datas.length ; i++) {
-    text += `- ${datas[i].jobName}\r\n ${datas[i].companyName} \r\n ${datas[i].link}`;
+    text += `- ${datas[i].jobName} (${datas[i].companyName}) \r\n www.jobthai.com${datas[i].link}`;
   }
   const responseText:TextMessage = {
     type : "text" ,
