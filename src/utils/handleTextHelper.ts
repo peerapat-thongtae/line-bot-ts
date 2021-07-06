@@ -43,7 +43,7 @@ export const sendText = async <T extends JobInterface> (replyToken : string , cl
     }
     const responseText:TextMessage = {
       type : "text" ,
-      text : text,
+      text : datas.length.toString(),
     }
     await client.replyMessage(replyToken , responseText);
   } catch(e) {
