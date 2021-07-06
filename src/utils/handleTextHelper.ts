@@ -47,7 +47,7 @@ export const sendText = async <T extends JobInterface> (replyToken : string , cl
     }
     await client.replyMessage(replyToken , responseText);
   } catch(e) {
-    console.log(e.message);
+    console.log(e);
   }
   
 }
