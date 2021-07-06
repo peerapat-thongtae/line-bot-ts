@@ -32,3 +32,11 @@ export const sendMedia = async (replyToken:string , client:Client , datas:any) =
     const responseCarousel:FlexMessage = await cardCarousel(datas.results);
     await client.replyMessage(replyToken , responseCarousel);
 }
+
+export const sendText = async (replyToken : string , client:Client , datas : any) => {
+  const responseText:TextMessage = {
+    type : "text" ,
+    text : "https://google.co.th"
+  }
+  await client.replyMessage(replyToken , responseText);
+}

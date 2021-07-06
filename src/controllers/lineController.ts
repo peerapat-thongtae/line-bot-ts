@@ -4,7 +4,8 @@ import * as BookmarkService from '../../src/services/bookmarkService';
 import * as MovieService from '../../src/services//TMDB/movieService';
 import * as TVService from '../../src/services//TMDB/tvService';
 import { cardMedia } from '../../src/utils/messageHelper';
-import { getMoviePopular, sendMedia } from '../utils/handleTextHelper';
+import { getMoviePopular, sendMedia, sendText } from '../utils/handleTextHelper';
+import { getJobThai } from '../services/Scraping/JobService';
 
 export const textEventHandler = async (event: WebhookEvent , client:Client): Promise<MessageAPIResponseBase | undefined> => {
   // Process all variables here.
@@ -27,6 +28,9 @@ export const textEventHandler = async (event: WebhookEvent , client:Client): Pro
     case "trending tv day" :
       const trendingTV = await TVService.trendingTVDay();
       await sendMedia(replyToken , client , trendingTV);
+    case "job jobthai" :
+      const jobthai = await getJobThai();
+      await sendText(replyToken , client , jobthai);
 
     default:
       // code block
