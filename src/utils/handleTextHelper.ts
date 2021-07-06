@@ -35,14 +35,19 @@ export const sendMedia = async (replyToken:string , client:Client , datas:any) =
 }
 
 export const sendText = async <T extends JobInterface> (replyToken : string , client:Client , datas :T[]):Promise<void> => {
-
-  let text = '';
-  for (let i = 0 ; i < datas.length ; i++) {
-    text += `- ${datas[i].jobName} (${datas[i].companyName} > ${datas[i].location}) : www.jobthai.com${datas[i].link}\r\n`;
+  try {
+    let text = '';
+    console.log(datas.length);
+    for (let i = 0 ; i < datas.length ; i++) {
+      text += `- ${datas[i].jobName} (${datas[i].companyName} > ${datas[i].location}) : www.jobthai.com${datas[i].link}\r\n`;
+    }
+    const responseText:TextMessage = {
+      type : "text" ,
+      text : text,
+    }
+    await client.replyMessage(replyToken , responseText);
+  } catch(e) {
+    console.log(e.message);
   }
-  const responseText:TextMessage = {
-    type : "text" ,
-    text : text,
-  }
-  await client.replyMessage(replyToken , responseText);
+  
 }
