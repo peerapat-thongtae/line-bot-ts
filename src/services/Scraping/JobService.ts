@@ -20,3 +20,13 @@ export const getJobsDB = async () => {
   }
   
 }
+
+export const getJobsBlognone = async () => {
+  try {
+    const data = await axios.get(`${process.env.SCRAPING_URL}/job/jobblognone`);
+    return data.data;
+  } catch(e) {
+    return e;
+  }
+  
+}

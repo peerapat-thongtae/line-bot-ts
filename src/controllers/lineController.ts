@@ -5,7 +5,7 @@ import * as MovieService from '../../src/services//TMDB/movieService';
 import * as TVService from '../../src/services//TMDB/tvService';
 import { cardMedia } from '../../src/utils/messageHelper';
 import { getMoviePopular, sendMedia, sendText } from '../utils/handleTextHelper';
-import { getJobsDB, getJobThai } from '../services/Scraping/JobService';
+import { getJobsBlognone, getJobsDB, getJobThai } from '../services/Scraping/JobService';
 import { JobInterface } from '../models/JobModel';
 
 export const textEventHandler = async (event: WebhookEvent , client:Client): Promise<MessageAPIResponseBase | undefined> => {
@@ -35,6 +35,9 @@ export const textEventHandler = async (event: WebhookEvent , client:Client): Pro
     case "job jobsdb" : 
       const jobsdb:Array<JobInterface> = await getJobsDB();
       await sendText<JobInterface>(replyToken , client , jobsdb);
+    case "job jobsdb" : 
+      const jobsblognone:Array<JobInterface> = await getJobsBlognone();
+      await sendText<JobInterface>(replyToken , client , jobsblognone);
     default:
       // code block
   }
