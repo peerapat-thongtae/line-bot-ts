@@ -34,9 +34,14 @@ export const sendMedia = async (replyToken:string , client:Client , datas:any) =
 }
 
 export const sendText = async (replyToken : string , client:Client , datas : any) => {
+
+  let text = '';
+  for (let i = 0 ; i < datas.length ; i++) {
+    text += `${datas.jobName}\r\n`;
+  }
   const responseText:TextMessage = {
     type : "text" ,
-    text : "https://google.co.th"
+    text : text
   }
   await client.replyMessage(replyToken , responseText);
 }
