@@ -35,7 +35,7 @@ export const textEventHandler = async (event: WebhookEvent , client:Client): Pro
     case "job jobsdb" : 
       const jobsdb:Array<JobInterface> = await getJobsDB();
       await sendText<JobInterface>(replyToken , client , jobsdb);
-    case "job jobsdb" : 
+    case "job jobsblognone" : 
       const jobsblognone:Array<JobInterface> = await getJobsBlognone();
       await sendText<JobInterface>(replyToken , client , jobsblognone);
     default:
