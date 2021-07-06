@@ -38,12 +38,12 @@ export const sendText = async <T extends JobInterface> (replyToken : string , cl
   try {
     let text = '';
     console.log(datas.length);
-    for (let i = 0 ; i < datas.length ; i++) {
+    for (let i = 0 ; i < 20 ; i++) {
       text += `- ${datas[i].jobName} (${datas[i].companyName} > ${datas[i].location}) : www.jobthai.com${datas[i].link}\r\n`;
     }
     const responseText:TextMessage = {
       type : "text" ,
-      text : datas.length.toString(),
+      text : text,
     }
     await client.replyMessage(replyToken , responseText);
   } catch(e) {
