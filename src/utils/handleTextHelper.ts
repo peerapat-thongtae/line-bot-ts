@@ -37,7 +37,7 @@ export const sendText = async (replyToken : string , client:Client , datas : any
 
   let text = '';
   for (let i = 0 ; i < datas.length ; i++) {
-    text += `${datas.jobName}\r\n`;
+    text += `${datas[i].jobName}\r\n`;
   }
   const responseText:TextMessage = {
     type : "text" ,
