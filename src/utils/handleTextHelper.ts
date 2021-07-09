@@ -38,7 +38,7 @@ export const sendText = async <T extends JobInterface> (replyToken : string , cl
   try {
     let text = '';
     console.log(datas.length);
-    for (let i = 0 ; i < 4 ; i++) {
+    for (let i = 0 ; i < 10 ; i++) {
       text += `- ${datas[i].jobName} (${datas[i].companyName} > ${datas[i].location}) : ${datas[i].link}\r\n`;
     }
     const responseText:TextMessage = {
