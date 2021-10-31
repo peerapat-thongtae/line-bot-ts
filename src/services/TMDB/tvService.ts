@@ -35,6 +35,7 @@ export const myTVOnAir = async () => {
   const tvs = await axios.get(`http://localhost:3001/todo/tvonair/1`,{
     
   });
+  console.log(tvs.data);
 
   return tvs.data;
 }

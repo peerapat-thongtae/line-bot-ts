@@ -44,6 +44,7 @@ cron.schedule('33 13 * * *', async () => {
     type : "text" ,
     text : text,
   }
+  console.log(text);
   await client.pushMessage(`${process.env.LINE_MY_USER_ID}` , responseText);
 });
 
