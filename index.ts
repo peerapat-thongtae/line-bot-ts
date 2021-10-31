@@ -4,7 +4,7 @@ import { textEventHandler } from './src/controllers/lineController';
 import * as cron from 'node-cron';
 import { trendingMovieDay } from './src/services/TMDB/movieService';
 import { cardCarousel } from './src/utils/messageHelper';
-import { trendingTVDay } from './src/services/TMDB/tvService';
+import { myTVOnAir, trendingTVDay } from './src/services/TMDB/tvService';
 
 const clientConfig: ClientConfig = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN || '',
@@ -30,10 +30,21 @@ cron.schedule('40 20 * * *', async () => {
   const trendingTV = await trendingTVDay();
   const carouselTV:FlexMessage = await cardCarousel(trendingTV.results);
   await client.pushMessage(`${process.env.LINE_MY_USER_ID}` , carouselTV);
+});
 
-  var date = new Date();
-  console.log(date.getMinutes() );
-  console.log(date.getHours());
+cron.schedule('13 26 * * *', async () => {
+  const result = await myTVOnAir();
+  let text = 'My TV On Air Today : ';
+
+  for (let i = 0; i < result.tvonair.length; i++) {
+    const media = result.tvonair[i];
+    text += `\r\n${media.name} | Season ${media?.next_episode_to_air?.season_number} | EP.${media?.next_episode_to_air?.episode_number}`;
+  }
+  const responseText:TextMessage = {
+    type : "text" ,
+    text : text,
+  }
+  await client.pushMessage(`${process.env.LINE_MY_USER_ID}` , responseText);
 });
 
 app.get(

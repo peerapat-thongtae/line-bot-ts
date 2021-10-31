@@ -30,3 +30,11 @@ export const trendingTVDay = async () => {
 
   return tvs.data;
 }
+
+export const myTVOnAir = async () => {
+  const tvs = await axios.get(`http://localhost:3001/todo/tvonair/1`,{
+    
+  });
+
+  return tvs.data;
+}
