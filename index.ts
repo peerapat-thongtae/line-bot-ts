@@ -32,20 +32,20 @@ cron.schedule('40 20 * * *', async () => {
   await client.pushMessage(`${process.env.LINE_MY_USER_ID}` , carouselTV);
 });
 
-// cron.schedule('13 26 * * *', async () => {
-//   const result = await myTVOnAir();
-//   let text = 'My TV On Air Today : ';
+cron.schedule('33 13 * * *', async () => {
+  const result = await myTVOnAir();
+  let text = 'My TV On Air Today : ';
 
-//   for (let i = 0; i < result.tvonair.length; i++) {
-//     const media = result.tvonair[i];
-//     text += `\r\n${media.name} | Season ${media?.next_episode_to_air?.season_number} | EP.${media?.next_episode_to_air?.episode_number}`;
-//   }
-//   const responseText:TextMessage = {
-//     type : "text" ,
-//     text : text,
-//   }
-//   await client.pushMessage(`${process.env.LINE_MY_USER_ID}` , responseText);
-// });
+  for (let i = 0; i < result.tvonair.length; i++) {
+    const media = result.tvonair[i];
+    text += `\r\n${media.name} | Season ${media?.next_episode_to_air?.season_number} | EP.${media?.next_episode_to_air?.episode_number}`;
+  }
+  const responseText:TextMessage = {
+    type : "text" ,
+    text : text,
+  }
+  await client.pushMessage(`${process.env.LINE_MY_USER_ID}` , responseText);
+});
 
 app.get(
   '/',
