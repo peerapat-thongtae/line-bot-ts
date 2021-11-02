@@ -32,7 +32,7 @@ cron.schedule('40 20 * * *', async () => {
   await client.pushMessage(`${process.env.LINE_MY_USER_ID}` , carouselTV);
 });
 
-cron.schedule('39 18 * * *', async () => {
+cron.schedule('53 18 * * *', async () => {
   try {
     const result = await myTVOnAir();
     let text = 'My TV On Air Today : ';
