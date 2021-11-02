@@ -32,7 +32,7 @@ export const trendingTVDay = async () => {
 }
 
 export const myTVOnAir = async () => {
-  const tvs = await axios.get(`http://localhost:3000/todo/tvonair/1`,{
+  const tvs = await axios.get(`https://nest-media-list.herokuapp.com//todo/tvonair/1`,{
     
   });
   console.log(tvs.data);
