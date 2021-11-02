@@ -32,20 +32,24 @@ cron.schedule('40 20 * * *', async () => {
   await client.pushMessage(`${process.env.LINE_MY_USER_ID}` , carouselTV);
 });
 
-cron.schedule('33 18 * * *', async () => {
-  const result = await myTVOnAir();
-  let text = 'My TV On Air Today : ';
-  console.log(result);
-  for (let i = 0; i < result.tvonair.length; i++) {
-    const media = result.tvonair[i];
-    text += `\r\n${media.name} | Season ${media?.next_episode_to_air?.season_number} | EP.${media?.next_episode_to_air?.episode_number}`;
+cron.schedule('37 18 * * *', async () => {
+  try {
+    const result = await myTVOnAir();
+    let text = 'My TV On Air Today : ';
+    for (let i = 0; i < result.tvonair.length; i++) {
+      const media = result.tvonair[i];
+      text += `\r\n${media.name} | Season ${media?.next_episode_to_air?.season_number} | EP.${media?.next_episode_to_air?.episode_number}`;
+    }
+    const responseText:TextMessage = {
+      type : "text" ,
+      text : text,
+    }
+    console.log(text);
+    await client.pushMessage(`${process.env.LINE_MY_USER_ID}` , responseText);
+  } catch (err) {
+    console.log(err);
   }
-  const responseText:TextMessage = {
-    type : "text" ,
-    text : text,
-  }
-  console.log(text);
-  await client.pushMessage(`${process.env.LINE_MY_USER_ID}` , responseText);
+  
 });
 
 app.get(
