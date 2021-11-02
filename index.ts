@@ -32,12 +32,12 @@ cron.schedule('40 20 * * *', async () => {
   await client.pushMessage(`${process.env.LINE_MY_USER_ID}` , carouselTV);
 });
 
-cron.schedule('37 18 * * *', async () => {
+cron.schedule('39 18 * * *', async () => {
   try {
     const result = await myTVOnAir();
     let text = 'My TV On Air Today : ';
-    for (let i = 0; i < result.tvonair.length; i++) {
-      const media = result.tvonair[i];
+    for (let i = 0; i < result.tvOnAir.length; i++) {
+      const media = result.tvOnAir[i];
       text += `\r\n${media.name} | Season ${media?.next_episode_to_air?.season_number} | EP.${media?.next_episode_to_air?.episode_number}`;
     }
     const responseText:TextMessage = {
