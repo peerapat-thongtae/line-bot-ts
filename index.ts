@@ -22,7 +22,7 @@ const client = new Client(clientConfig);
 
 const app: Application = express();
 
-cron.schedule('30 18 * * *', async () => {
+cron.schedule('40 20 * * *', async () => {
   const trendingMovie = await trendingMovieDay();
   const carouselMovie:FlexMessage = await cardCarousel(trendingMovie.results);
   await client.pushMessage(`${process.env.LINE_MY_USER_ID}` , carouselMovie);
@@ -32,7 +32,7 @@ cron.schedule('30 18 * * *', async () => {
   await client.pushMessage(`${process.env.LINE_MY_USER_ID}` , carouselTV);
 });
 
-cron.schedule('25 18 * * *', async () => {
+cron.schedule('33 18 * * *', async () => {
   const result = await myTVOnAir();
   let text = 'My TV On Air Today : ';
   console.log(result);
