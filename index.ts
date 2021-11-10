@@ -52,13 +52,13 @@ cron.schedule('00 16 * * *', async () => {
   
 });
 
-cron.schedule('54 15 * * *', async () => {
+cron.schedule('00 10 * *', async () => {
   try {
     const result = await cinemaToday();
     let text = 'Movie in cinema today : ';
     for (let i = 0; i < result.length; i++) {
       const media = result[i];
-      text += `\r\n<b>${media.name}</b> | เริ่มฉายตั้งแต่ ${media.date.replace('\r ','')}`;
+      text += `\r\n${media.name} || เริ่มฉายตั้งแต่ ${media.date.replace('\r ','')}`;
     }
     const responseText:TextMessage = {
       type : "text" ,
