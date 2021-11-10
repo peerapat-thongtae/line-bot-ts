@@ -52,7 +52,7 @@ cron.schedule('00 16 * * *', async () => {
   
 });
 
-cron.schedule('26 15 * * *', async () => {
+cron.schedule('35 15 * * *', async () => {
   try {
     const result = await cinemaToday();
     let text = 'Movie in cinema today : ';
