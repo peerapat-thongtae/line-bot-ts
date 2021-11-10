@@ -58,7 +58,7 @@ cron.schedule('26 15 * * *', async () => {
     let text = 'Movie in cinema today : ';
     for (let i = 0; i < result.length; i++) {
       const media = result[i];
-      text += `\r\n${media.name} | เริ่มฉายตั้งแต่ ${media.date.replace('\r ')}`;
+      text += `\r\n${media.name} | เริ่มฉายตั้งแต่ ${media.date.replace('\r ','')}`;
     }
     const responseText:TextMessage = {
       type : "text" ,
