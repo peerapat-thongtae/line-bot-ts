@@ -30,3 +30,10 @@ export const trendingMovieDay = async () => {
 
   return movies.data;
 }
+
+export const cinemaToday = async () => {
+  const movies = await axios.get(`${process.env.SCRAPING_URL}/movie/major/movietoday`,{
+  });
+
+  return movies.data;
+}

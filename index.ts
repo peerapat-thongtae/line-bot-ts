@@ -2,7 +2,7 @@ import { ClientConfig, Client, middleware, MiddlewareConfig, WebhookEvent, TextM
 import express, { Application, Request, Response } from 'express';
 import { textEventHandler } from './src/controllers/lineController';
 import * as cron from 'node-cron';
-import { trendingMovieDay } from './src/services/TMDB/movieService';
+import { cinemaToday, trendingMovieDay } from './src/services/TMDB/movieService';
 import { cardCarousel } from './src/utils/messageHelper';
 import { myTVOnAir, trendingTVDay } from './src/services/TMDB/tvService';
 
@@ -51,6 +51,27 @@ cron.schedule('00 16 * * *', async () => {
   }
   
 });
+
+cron.schedule('26 15 * * *', async () => {
+  try {
+    const result = await cinemaToday();
+    let text = 'Movie in cinema today : ';
+    for (let i = 0; i < result.length; i++) {
+      const media = result[i];
+      text += `\r\n${media.name} | เริ่มฉายตั้งแต่ ${media.date.replace('\r ')}`;
+    }
+    const responseText:TextMessage = {
+      type : "text" ,
+      text : text,
+    }
+    console.log(text);
+    await client.pushMessage(`${process.env.LINE_MY_USER_ID}` , responseText);
+  } catch (err) {
+    console.log(err);
+  }
+  
+});
+
 
 app.get(
   '/',
