@@ -43,6 +43,7 @@ export const textEventHandler = async (event: WebhookEvent , client:Client): Pro
       const movies = data.movies;
       let text = 'My Random Movie : ';
       console.log(movies.length);
+      console.log(movies);
       for (let i = 0 ; i < movies.length ; i++) {
         text += `\r\n - ${movies[i].name}`;
       }
