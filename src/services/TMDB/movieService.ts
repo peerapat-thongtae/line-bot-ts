@@ -37,3 +37,10 @@ export const cinemaToday = async () => {
 
   return movies.data;
 }
+
+export const randomMyMovie = async () => {
+  const movies = await axios.get(`${process.env.MEDIA_LIST_URL}/todo/random/movie`,{
+  });
+
+  return movies.data;
+}

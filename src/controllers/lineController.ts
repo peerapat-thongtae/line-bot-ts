@@ -37,7 +37,21 @@ export const textEventHandler = async (event: WebhookEvent , client:Client): Pro
       await sendText<JobInterface>(replyToken , client , jobsdb);
     case "job jobsblognone" : 
       const jobsblognone:Array<JobInterface> = await getJobsBlognone();
-      await sendText<JobInterface>(replyToken , client , jobsblognone);
+      await sendText<JobInterface>(replyToken, client, jobsblognone);
+    case `random movie`:
+      const data = await MovieService.randomMyMovie();
+      const movies = data.movies;
+      let text = 'My Random Movie : ';
+      console.log(movies.length);
+      for (let i = 0 ; i < 10 ; i++) {
+        text += `\r\n - ${movies[i].name}`;
+      }
+      const responseText:TextMessage = {
+        type : "text" ,
+        text : text,
+      }
+      await client.replyMessage(replyToken , responseText);
+
     default:
       // code block
   }
