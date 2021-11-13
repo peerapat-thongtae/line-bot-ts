@@ -45,7 +45,7 @@ export const textEventHandler = async (event: WebhookEvent , client:Client): Pro
       console.log(movies.length);
       console.log(movies);
       for (let i = 0 ; i < movies.length ; i++) {
-        text += `\r\n - ${movies[i].name}`;
+        text += `\r\n - ${movies[i].title}`;
       }
       const responseText:TextMessage = {
         type : "text" ,
