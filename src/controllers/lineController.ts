@@ -19,7 +19,7 @@ export const textEventHandler = async (event: WebhookEvent , client:Client): Pro
   const { replyToken } = event;
   const { text } = event.message;
   
-  switch(text) {
+  switch (text) {
     case "movie popular":
       await getMoviePopular(replyToken , client);
       break;
@@ -38,12 +38,18 @@ export const textEventHandler = async (event: WebhookEvent , client:Client): Pro
     case "job jobsblognone" : 
       const jobsblognone:Array<JobInterface> = await getJobsBlognone();
       await sendText<JobInterface>(replyToken, client, jobsblognone);
-    case `random movie`:
-      const data = await MovieService.randomMyMovie();
+    // case `random movie`:
+      
+
+    default:
+      // code block
+  }
+  if (text.startsWith('random movie')) {
+    const arrText = event.message.text.split(" ");
+    const numberRandom = arrText[2] ? parseFloat(arrText[2]) : 1;
+    const data = await MovieService.randomMyMovie(numberRandom);
       const movies = data.movies;
       let text = 'My Random Movie : ';
-      console.log(movies.length);
-      console.log(movies);
       for (let i = 0 ; i < movies.length ; i++) {
         text += `\r\n - ${movies[i].title}`;
       }
@@ -52,13 +58,7 @@ export const textEventHandler = async (event: WebhookEvent , client:Client): Pro
         text : text,
       }
       await client.replyMessage(replyToken , responseText);
-
-    default:
-      // code block
   }
-  // if(text === 'movie popular') {
-    
-  // }
 
 
   return;
